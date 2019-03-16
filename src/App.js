@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Title from './components/Title.js';
 import CurrentDate from './components/CurrentDate.js';
-import Words from './components/Words.js'
+import Words from './components/Words.js';
+import InputWord from './components/InputWord.js';
 
 class App extends Component {
   state = {
@@ -14,6 +15,7 @@ class App extends Component {
       <div className="App">
         <Title language={ this.state.language } />
         <CurrentDate />
+        <InputWord />
         <Words />
       </div>
     );
