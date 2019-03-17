@@ -3,6 +3,7 @@ import Title from './components/Title.js';
 import CurrentDate from './components/CurrentDate.js';
 import Words from './components/Words.js';
 import InputWord from './components/InputWord.js';
+import './App.css';
 
 class App extends Component {
   state = {
