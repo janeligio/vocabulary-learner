@@ -19,9 +19,13 @@ class InputWord extends React.Component {
       word: updated
     });
   }
-  
-  handleSubmit(event){
+
+  handleSubmit = (event) => {
     event.preventDefault();
+    const data = { word: this.state.word, translation: this.state.translation };
+    console.log(this.props);
+
+    this.props.post(data);
     this.setState({
       word: '',
       translation: ''

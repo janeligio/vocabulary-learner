@@ -9,7 +9,7 @@ const Translation = require('../../models/Translation');
 // @access Public
 router.get('/', (req, res) => { // Right now router in this directory so it would be wrong to refer to /api/items
   Translation.find() // Gets all the translatios in the database
-    .sort({ date: 1}) // sorts ascending
+    .sort({ date: -1}) // sorts ascending
     .then(translations => res.json(translations)) // parses the data into JSON format
 });
 

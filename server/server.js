@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const translations = require('./routes/api/translations');
 
@@ -9,6 +10,8 @@ const app = express(); // Instantiate express
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
+// This allows cross-origin resource sharing to make HTTP requests
+app.use(cors({credentials: true, origin: true}));
 
 // DB Config
 const db = require('./config/keys').mongoURI;

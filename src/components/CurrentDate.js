@@ -54,7 +54,6 @@ class CurrentDate extends Component {
 
     const currDate = new Date();
     const date = currDate.getDate();
-    console.log(currDate);
     const month = this.toMonth(currDate.getMonth());
     const year = currDate.getFullYear();
     const day = this.toDay(currDate.getDay());
@@ -63,7 +62,7 @@ class CurrentDate extends Component {
     //const day = dateObject.getDate();
     //const year = dateObject.getFullYear();
     //const date = "${month} ${day}, ${year}";
-    return <h2>{day} {month} {date}, {year}</h2>;
+    return <h2 className="Date">{day} {month} {date}, {year}</h2>;
 
   }
 }
