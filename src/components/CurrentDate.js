@@ -57,12 +57,8 @@ class CurrentDate extends Component {
     const month = this.toMonth(currDate.getMonth());
     const year = currDate.getFullYear();
     const day = this.toDay(currDate.getDay());
-    //const dateObject = new Date()
-    //const month = this.toMonth();
-    //const day = dateObject.getDate();
-    //const year = dateObject.getFullYear();
-    //const date = "${month} ${day}, ${year}";
-    return <h2 className="Date">{day} {month} {date}, {year}</h2>;
+
+    return <h5 className="Date">{day} {month} {date}, {year}</h5>;
 
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+import {HotKeys} from 'react-hotkeys';
 
 class InputWord extends React.Component {
   constructor(props){
@@ -8,12 +9,72 @@ class InputWord extends React.Component {
       translation: '',
     };
 
+    this.keyMap = {
+      a: 'ctrl+\'+a',
+      e: 'ctrl+\'+e',
+      i: 'ctrl+\'+i',
+      o: 'ctrl+\'+o',
+      u: 'ctrl+\'+u',
+      questionMark: 'ctrl+/',
+      bang: 'ctrl+1',
+      germanU: 'ctrl+shift+u',
+      n: 'alt+n'
+    }
+
+    this.handlers = {
+      'a': (event) => this.handleHotKey(event),
+      'e': (event) => this.handleHotKey(event),
+      'i': (event) => this.handleHotKey(event),
+      'o': (event) => this.handleHotKey(event),
+      'u': (event) => this.handleHotKey(event),
+      'questionMark': (event) => this.handleHotKey(event),
+      'bang': (event) => this.handleHotKey(event),
+      'germanU': (event) => this.handleHotKey(event),
+      'n': (event) => this.handleHotKey(event)
+
+    };
+
+    //this.handleHotKey = this.handleHotKey.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.putChar = this.putChar.bind(this);
+    //this.handleKeyDown = this.handleKeyDown.bind(this);
 
   }
+
+  handleHotKey = (e) => {
+      e.preventDefault();
+      let char = '';
+      switch(e.key){
+        case 'a': char += 'á';
+          break;
+        case 'e': char += 'é';
+          break;
+        case 'i': char += 'í';
+          break;
+        case 'o': char += 'ó';
+          break;
+        case 'u': char += 'ú';
+          break;
+        case '/': char += '¿';
+          break;
+        case '1': char += '¡';
+          break;
+        case 'U': char += 'ü';
+          break;
+        case 'n': char += 'ñ';
+          break;
+        default:
+        break;
+      }
+      let updated = this.state.word + char;
+      this.setState({
+        word: updated
+      });
+  }
+
   putChar(char, event){
+    event.preventDefault();
     let updated = this.state.word + char;
     this.setState({
       word: updated
@@ -52,32 +113,35 @@ class InputWord extends React.Component {
 
   render() {
     return (
-      <div>
-      <h3>Input a word or phrase.</h3>
-      <form onSubmit={this.handleSubmit}>
-      <div>
-      <div><label htmlFor="word">Word/Phrase</label></div>
+      <div className="InputField">
+      <h3 className="InputField-Header">Input a word or phrase.</h3>
+      <form className="ui form" onSubmit={this.handleSubmit}>
+      <div className="field">
+      <label htmlFor="word">Word/Phrase</label>
+      <HotKeys keyMap={this.keyMap} handlers={this.handlers}>
       <input type="text" id="word" name="word" value={ this.state.word } required maxLength="100" size="30"
         onChange={this.handleChange} />
+      </HotKeys>
         <div>
-        <button onClick={this.putChar.bind(this, 'á')}>á</button>
-        <button onClick={this.putChar.bind(this, 'é')}>é</button>
-        <button onClick={this.putChar.bind(this, 'í')}>í</button>
-        <button onClick={this.putChar.bind(this, 'ó')}>ó</button>
-        <button onClick={this.putChar.bind(this, 'ú')}>ú</button>
-        <button onClick={this.putChar.bind(this, '¿')}>¿</button>
-        <button onClick={this.putChar.bind(this, '¡')}>¡</button>
-        <button onClick={this.putChar.bind(this, 'ü')}>ü</button>
-        <button onClick={this.putChar.bind(this, 'ñ')}>ñ</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, 'á')}>á</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, 'é')}>é</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, 'í')}>í</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, 'ó')}>ó</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, 'ú')}>ú</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, '¿')}>¿</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, '¡')}>¡</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, 'ü')}>ü</button>
+        <button className="ui button char" onClick={this.putChar.bind(this, 'ñ')}>ñ</button>
         </div>
       </div>
-      <div>
-      <div><label htmlFor="translation">Translation</label></div>
+
+      <div className="field">
+      <label htmlFor="translation">Translation</label>
       <input type="text" id="translation" value={ this.state.translation }name="translation" required maxLength="100" size="30"
         onChange={this.handleChange} />
       </div>
+      <input className="ui button" type="submit" value="Submit" />
 
-      <input type="submit" value="Submit" />
 
       </form>
 

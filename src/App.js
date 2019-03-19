@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AppHeader from './components/Title.js';
-import CurrentDate from './components/CurrentDate.js';
 import Words from './components/Words.js';
 import InputWord from './components/InputWord.js';
 import axios from 'axios'; // Will allow us to make HTTP requests to our server
@@ -16,7 +15,7 @@ class App extends Component {
   componentDidMount() {
     this.getDatabase();
     // Updates db every second
-    this.timerID = setInterval(this.getDatabase, 1000);
+    this.timerID = setInterval(this.getDatabase, 500);
   }
   componentWillUnmount() {
     clearInterval(this.timerID);
@@ -61,9 +60,18 @@ class App extends Component {
     return (
       <div className="App">
         <AppHeader language={ this.state.language } />
-        <CurrentDate />
-        <InputWord post={ this.postDatabase}/>
-        <Words data={ this.state.data } delete={(e) => this.removeDatabase(e) }/>
+      <div className="container">
+        <div className="ui grid">
+          <div className="six wide column">
+            <InputWord post={ this.postDatabase}/>
+          </div>
+        <div className="six wide column words">
+          <Words data={ this.state.data } delete={(e) => this.removeDatabase(e) }/>
+        </div>
+        <div className="sixe wide column">
+        </div>
+        </div>
+      </div>
       </div>
     );
   }

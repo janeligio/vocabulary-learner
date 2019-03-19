@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-
+import CurrentDate from './CurrentDate';
 function AppHeader(props) {
-  return <h1 className="AppHeader">{ props.language } Learner</h1>;
+  return (
+    <div className="AppHeader">
+    <span><h1>{ props.language } Learner</h1></span>
+    <span><CurrentDate /></span>
+    </div>
+);
 }
 
 export default AppHeader;
