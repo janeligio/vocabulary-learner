@@ -18,7 +18,8 @@ class InputWord extends React.Component {
       questionMark: 'ctrl+/',
       bang: 'ctrl+1',
       germanU: 'ctrl+shift+u',
-      n: 'alt+n'
+      n: 'alt+n',
+      tab: 'tab'
     }
 
     this.handlers = {
@@ -30,7 +31,8 @@ class InputWord extends React.Component {
       'questionMark': (event) => this.handleHotKey(event),
       'bang': (event) => this.handleHotKey(event),
       'germanU': (event) => this.handleHotKey(event),
-      'n': (event) => this.handleHotKey(event)
+      'n': (event) => this.handleHotKey(event),
+      'tab': (event) => this.handleHotKey(event)
 
     };
 
@@ -40,6 +42,10 @@ class InputWord extends React.Component {
     this.putChar = this.putChar.bind(this);
     //this.handleKeyDown = this.handleKeyDown.bind(this);
 
+  }
+
+  componentDidMount() {
+    document.getElementById('word').focus();
   }
 
   handleHotKey = (e) => {
@@ -63,6 +69,8 @@ class InputWord extends React.Component {
         case 'U': char += 'ü';
           break;
         case 'n': char += 'ñ';
+          break;
+        case 'Tab': document.getElementById('translation').focus();
           break;
         default:
         break;
@@ -137,7 +145,9 @@ class InputWord extends React.Component {
 
       <div className="field">
       <label htmlFor="translation">Translation</label>
-      <input type="text" id="translation" value={ this.state.translation }name="translation" required maxLength="100" size="30"
+      <input type="text" id="translation" 
+        value={ this.state.translation } name="translation" 
+        required maxLength="100" size="30"
         onChange={this.handleChange} />
       </div>
       <input className="ui button" type="submit" value="Submit" />
