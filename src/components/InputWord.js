@@ -41,7 +41,6 @@ class InputWord extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.putChar = this.putChar.bind(this);
     //this.handleKeyDown = this.handleKeyDown.bind(this);
-    //test
   }
 
   componentDidMount() {
