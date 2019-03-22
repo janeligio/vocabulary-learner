@@ -10,7 +10,12 @@
     "react-dom": "^16.8.4",
     "react-hotkeys": "^1.1.4",
     "react-moment": "^0.8.4",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
   },
   "scripts": {
     "start": "cd server && npm run start",
