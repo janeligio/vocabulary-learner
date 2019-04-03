@@ -21,7 +21,8 @@ class App extends Component {
     clearInterval(this.timerID);
   }
   postDatabase = (data) => {
-    axios.post('/api/translations', data)
+    const url = "http://localhost:5000/api/translations"; // site that doesn’t send Access-Control-*
+    axios.post(url, data)
     .then( (response) => {
       console.log(response);
     })
@@ -31,7 +32,8 @@ class App extends Component {
   }
 
   getDatabase = () => {
-    axios.get('/api/translations')
+    const url = "http://localhost:5000/api/translations"; // site that doesn’t send Access-Control-*
+    axios.get(url)
     .then(response => {
       // handle success
       this.setState({data: response.data})
@@ -43,7 +45,9 @@ class App extends Component {
   }
 
   removeDatabase = (id) => {
-    axios.delete("/api/translations/" + id)
+    const url = "http://localhost:5000/api/translations/";
+    const fullUrl = url + id;
+    axios.delete(fullUrl)
       .then(response => {
         console.log(response);
       })
